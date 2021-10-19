@@ -1,0 +1,22 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteCond %{REQUEST_URI} !^/\.well-known/cpanel-dcv/[0-9a-zA-Z_-]+$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/(?:\ Ballot169)?
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^(.*)$ $1.html [NC,L]
+
+
+
+#always backup as a thumb of rule
+vi ~/public_html/.htaccess 
+
+Or
+
+vi ./yourdomain.com/.htaccess 
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
